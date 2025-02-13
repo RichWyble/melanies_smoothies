@@ -33,7 +33,10 @@ conn = snowflake.connector.connect(
 
 # Create a session
 session = conn.cursor()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+#my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+# replaced the above with what's below as part of the move to SniS
+my_dataframe = session.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_options")
+
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
