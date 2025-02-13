@@ -3,6 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import snowflake.connector
 import requests
+import pandas
  
 
 # Write directly to the app
@@ -36,7 +37,12 @@ session = conn.cursor()
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 # replaced the above with what's below as part of the move to SniS
 my_dataframe = session.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.public.fruit_options")
-st.dataframe(data=my_dataframe, use_container_width=True)
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
+
+#Convert the my_dataframe to a pandas dataframe.
+pd_df=my_dataframe.to_pandas()
+st.dataframe(pd_df)
 st.stop()
 
 ingredients_list = st.multiselect(
