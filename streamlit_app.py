@@ -43,7 +43,7 @@ my_dataframe = session.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.publ
 #Convert the my_dataframe to a pandas dataframe.
 results = my_dataframe.fetchall()
 pd_df=pd.DataFrame(results, columns=["FRUIT_NAME","SEARCH_ON"])
-st.dataframe(data=pd_df, use_container_width=True)
+#st.dataframe(data=pd_df, use_container_width=True)
 #st.stop()
 
 ingredients_list = st.multiselect(
