@@ -14,22 +14,22 @@ name_on_order = st.text_input("Name on Smoothie:")
 st.write("The name on your Smoothie will be:", name_on_order)
 
 #session = get_active_session()
-#cnx = st.connection("snowflake", 
-#    connection_args={
-#        "insecure_mode": True  # TEMPORARILY disable SSL certificate check
-#    }
-#)
-#session = cnx.session()
-# Use Streamlit secrets for credentials
-conn = snowflake.connector.connect(
-    user=st.secrets["snowflake"]["user"],
-    password=st.secrets["snowflake"]["password"],
-    account=st.secrets["snowflake"]["account"],
-    warehouse=st.secrets["snowflake"]["warehouse"],
-    database=st.secrets["snowflake"]["database"],
-    schema=st.secrets["snowflake"]["schema"],
-    role=st.secrets["snowflake"].get("role", "PUBLIC")  # Default to PUBLIC role
+cnx = st.connection("snowflake", 
+    connection_args={
+        "insecure_mode": True  # TEMPORARILY disable SSL certificate check
+    }
 )
+session = cnx.session()
+# Use Streamlit secrets for credentials
+#conn = snowflake.connector.connect(
+#    user=st.secrets["snowflake"]["user"],
+#    password=st.secrets["snowflake"]["password"],
+#    account=st.secrets["snowflake"]["account"],
+#    warehouse=st.secrets["snowflake"]["warehouse"],
+#    database=st.secrets["snowflake"]["database"],
+#    schema=st.secrets["snowflake"]["schema"],
+#    role=st.secrets["snowflake"].get("role", "PUBLIC")  # Default to PUBLIC role
+#)
 
 # Create a session
 session = conn.cursor()
