@@ -35,10 +35,9 @@ conn = snowflake.connector.connect(
 session = conn.cursor()
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 # replaced the above with what's below as part of the move to SniS
-my_dataframe = session.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_options")
-
-#st.dataframe(data=my_dataframe, use_container_width=True)
-
+my_dataframe = session.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.public.fruit_options")
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
 
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredents'
