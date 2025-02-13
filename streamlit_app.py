@@ -41,7 +41,7 @@ my_dataframe = session.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.publ
 #st.stop()
 
 #Convert the my_dataframe to a pandas dataframe.
-pd_df=my_dataframe.to_pandas()
+pd_df=pd.dataframe(my_dataframe.fetchall(), columns=["FRUIT_NAME","SEARCH_ON"]
 st.dataframe(pd_df)
 st.stop()
 
