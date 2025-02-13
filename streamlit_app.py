@@ -41,7 +41,7 @@ my_dataframe = session.execute("SELECT FRUIT_NAME FROM smoothies.public.fruit_op
 
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 #st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data=smoothie_response.json(), use_container_width=True)
+sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredents'
