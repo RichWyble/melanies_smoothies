@@ -66,6 +66,9 @@ if ingredients_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
-        session.sql(my_insert_stmt).collect()
+        #Changes due to SniS migration.  It's a difference between using snowflake.connector (SniS) vs. Snowpark (SiS)
+        #session.sql(my_insert_stmt).collect()
+        session.execute(my_insert_stmt)
+        session.commit()
 
         st.success('Your Smoothie is ordered!', icon="✅")
