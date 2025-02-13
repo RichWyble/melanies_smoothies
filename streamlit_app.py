@@ -3,7 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import snowflake.connector
 import requests
-import pandas
+import pandas as pd
  
 
 # Write directly to the app
@@ -41,7 +41,8 @@ my_dataframe = session.execute("SELECT FRUIT_NAME, SEARCH_ON FROM smoothies.publ
 #st.stop()
 
 #Convert the my_dataframe to a pandas dataframe.
-pd_df=pd.dataframe(my_dataframe.fetchall(), columns=["FRUIT_NAME","SEARCH_ON"]
+results = my_dataframe.fetchall()
+pd_df=pd.dataframe(results, columns=["FRUIT_NAME","SEARCH_ON"]
 st.dataframe(pd_df)
 st.stop()
 
