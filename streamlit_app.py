@@ -39,23 +39,10 @@ if ingredients_list:
         st.write('The search for ', fruit_chosen,' is ', search_on, '.')
         
         st.subheader(fruit_chosen + ' Nutrition Information')
+        if not search_on:  # If search_on is empty, use fruit_chosen
+        search_on = fruit_chosen
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
-        
-        st.write("API Response Status Code:", smoothiefroot_response.status_code)
-        st.write("Raw API Response:", smoothiefroot_response.text)  # Display raw response before parsing
-        
-        # Attempt to parse JSON only if the response is valid
-        try:
-            response_json = smoothiefroot_response.json()
-            st.write(response_json)
-        except requests.exceptions.JSONDecodeError:
-            st.error("Error: API response is not valid JSON.")
-            st.stop()
-
-#        st. write(smoothiefroot_response.json())
-#        st.stop()
-#        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     st.write(ingredients_string)
 
